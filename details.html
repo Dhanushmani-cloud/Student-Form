@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Details</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="form-container">
+    <h1>📘 Student Details</h1>
+    <div class="details-card" id="details"></div>
+
+    <div class="button-group">
+      <button onclick="goBack()" class="btn">← Back</button>
+      <button id="shareBtn" class="btn">📤 Share as Image</button>
+    </div>
+  </div>
+
+  <!-- html2canvas library -->
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+
+  <script>
+    const student = JSON.parse(localStorage.getItem('student'));
+    const detailsDiv = document.getElementById('details');
+
+    if (student) {
+      detailsDiv.innerHTML = `
+        <p><strong>Name:</strong> ${student.name}</p>
+        <p><strong>Roll No:</strong> ${student.roll}</p>
+        <p><strong>Email:</strong> ${student.email}</p>
+        <p><strong>Phone:</strong> ${student.phone}</p>
+        <p><strong>Department:</strong> ${student.dept}</p>
+        <p><strong>Year:</strong> ${student.year}</p>
+      `;
+    } else {
+      detailsDiv.innerHTML = `<p>No student data found.</p>`;
+    }
+
+    function goBack() {
+      window.location.href = "register.html";
+    }
+
+    // Share/Download as image
+    document.getElementById("shareBtn").addEventListener("click", () => {
+      html2canvas(document.getElementById("details"), {
+        backgroundColor: "#1a1a1a",
+        scale: 2
+      }).then(canvas => {
+        const image = canvas.toDataURL("image/png");
+
+        // Try to use native share if supported (like on WhatsApp mobile)
+        if (navigator.share) {
+          fetch(image)
+            .then(res => res.blob())
+            .then(blob => {
+              const file = new File([blob], "student-details.png", { type: "image/png" });
+              navigator.share({
+                files: [file],
+                title: "My Student Details",
+                text: "Here are my student details 📜",
+              }).catch(console.error);
+            });
+        } else {
+          // Fallback: download the image
+          const link = document.createElement("a");
+          link.download = "student-details.png";
+          link.href = image;
+          link.click();
+          alert("Image downloaded! You can now share it on WhatsApp or Instagram 📲");
+        }
+      });
+    });
+  </script>
+</body>
+</html>

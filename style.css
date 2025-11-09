@@ -1,0 +1,143 @@
+/* Global setup */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  height: 100vh;
+  background: linear-gradient(135deg, #000000, #1a1a1a, #3a2c0f);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #f9d67a; /* soft gold text */
+}
+
+/* Container */
+.form-container {
+  width: 420px;
+  background: rgba(20, 20, 20, 0.8);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 215, 0, 0.3);
+  box-shadow: 0 0 25px rgba(255, 215, 0, 0.15);
+  padding: 40px 35px;
+  text-align: center;
+  animation: fadeIn 1s ease-in-out;
+  transition: all 0.4s ease;
+}
+
+.form-container:hover {
+  box-shadow: 0 0 35px rgba(255, 215, 0, 0.3);
+}
+
+/* Title */
+h1 {
+  font-weight: 600;
+  margin-bottom: 25px;
+  letter-spacing: 1px;
+  color: #ffd700; /* rich gold */
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.4);
+}
+
+/* Form Card */
+.form-card {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form-group {
+  text-align: left;
+}
+
+label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #f5d98b;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 10px;
+  margin-top: 6px;
+  border: 1px solid rgba(255, 215, 0, 0.2);
+  border-radius: 8px;
+  background: rgba(255, 215, 0, 0.05);
+  color: #fff;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+input::placeholder {
+  color: #c5a93b;
+}
+
+input:focus,
+select:focus {
+  outline: none;
+  border: 1px solid #ffd700;
+  background: rgba(255, 215, 0, 0.15);
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+}
+
+/* Gold Button */
+.btn {
+  background: linear-gradient(90deg, #b8860b, #ffd700, #c9a509);
+  border: none;
+  padding: 12px;
+  color: #000;
+  font-weight: 700;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 15px;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 10px rgba(255, 215, 0, 0.25);
+}
+
+.btn:hover {
+  background: linear-gradient(90deg, #ffd700, #e6c200, #b8860b);
+  box-shadow: 0 4px 20px rgba(255, 215, 0, 0.45);
+  transform: translateY(-2px);
+}
+
+/* Details Card */
+.details-card {
+  background: rgba(255, 215, 0, 0.05);
+  padding: 20px;
+  border-radius: 15px;
+  border: 1px solid rgba(255, 215, 0, 0.2);
+  text-align: left;
+  margin-bottom: 25px;
+  font-size: 1rem;
+}
+
+.details-card p {
+  margin-bottom: 10px;
+  color: #f9e79f;
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Scrollbar (for premium touch) */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(#ffd700, #b8860b);
+  border-radius: 10px;
+}
